@@ -12,13 +12,13 @@ npm install wiremock-rest-client
 
 ## Usage
 The `WireMockRestClient` has 5 services which correspond with request paths as specified in the OpenAPI spec.
-- `global`
-- `mappings`
-- `recordings`
-- `requests`
-- `scenarios`
+- `global` - Global operations
+- `mappings` - Operations on stub mappings
+- `recordings` - Stub mapping record and snapshot functions
+- `requests` - Logged requests and responses received
+- `scenarios` - Scenarios support modeling of stateful behaviour
 
-Example:
+**Example:**
 ```javascript
 import { WireMockRestClient } from 'wiremock-rest-client';
 
@@ -55,7 +55,6 @@ await wireMock.mappings.createMappingsFromDir('stubs');
 await wireMock.mappings.resetAllMappings();
 
 await wireMock.global.shutdown();
-// ...
 ```
 
 ## Logging
@@ -63,7 +62,7 @@ await wireMock.global.shutdown();
 - Default log level is `info`
 - Each log line contains a unique id to trace logs for a single request
 
-To configure a different log level:
+To configure a different log level, first install `log4js` in your project. Configuration can be set as follows.
 
 ```javascript
 import log4js from 'log4js';
@@ -74,11 +73,11 @@ logger.level = 'debug';
 
 Debug level will log the request body for each request.
 
-Example:
+**Example:**
 ```shell
-2019-11-01T15:57:11.285] [INFO] wiremock-rest-client - [c47e4ee8-6e24-43a8-8fe0-bb0c60c847b7] Request: [POST] http://localhost:8080/__admin/mappings
+[2019-11-01T15:57:11.285] [INFO] wiremock-rest-client - [c47e4ee8-6e24-43a8-8fe0-bb0c60c847b7] Request: [POST] http://localhost:8080/__admin/mappings
 [2019-11-01T15:57:11.285] [DEBUG] wiremock-rest-client - [c47e4ee8-6e24-43a8-8fe0-bb0c60c847b7] Request body: {"request":{"method":"GET","urlPathPattern":"/api/helloworld"},"response":{"status":200,"jsonBody":{"hello":"world"},"headers":{"Content-Type":"application/json"}}}
-[0-0] [2019-11-01T15:57:11.301] [INFO] wiremock-rest-client - [c47e4ee8-6e24-43a8-8fe0-bb0c60c847b7] Response: [201] Created
+[2019-11-01T15:57:11.301] [INFO] wiremock-rest-client - [c47e4ee8-6e24-43a8-8fe0-bb0c60c847b7] Response: [201] Created
 [2019-11-01T15:57:11.292] [INFO] wiremock-rest-client - [c3690603-c055-4412-a5b0-497704c09dd0] Request: [POST] http://localhost:8080/__admin/shutdown
-[0-0] [2019-11-01T15:57:11.299] [INFO] wiremock-rest-client - [c3690603-c055-4412-a5b0-497704c09dd0] Response: [200] OK
+[2019-11-01T15:57:11.299] [INFO] wiremock-rest-client - [c3690603-c055-4412-a5b0-497704c09dd0] Response: [200] OK
 ```

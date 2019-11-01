@@ -4,8 +4,6 @@
 WireMock REST client is a lightweight client to interact with a running [WireMock](http://wiremock.org) server based on the [OpenAPI 3.0 spec](http://wiremock.org/docs/api/).
 
 ## Installation
-
-Install this module by running:
 ```
 npm install wiremock-rest-client
 ```
@@ -17,6 +15,8 @@ The `WireMockRestClient` has 5 services which correspond with request paths as s
 - `recordings` - Stub mapping record and snapshot functions
 - `requests` - Logged requests and responses received
 - `scenarios` - Scenarios support modeling of stateful behaviour
+
+Each service contain methods to perform operations on WireMock endpoints.
 
 **Example:**
 ```javascript
@@ -54,6 +54,10 @@ await wireMock.mappings.createMappingsFromDir('stubs');
 
 await wireMock.mappings.resetAllMappings();
 
+const requests = await wireMock.requests.getAllRequests();
+
+console.log(requests);
+
 await wireMock.global.shutdown();
 ```
 
@@ -66,6 +70,7 @@ To configure a different log level, first install `log4js` in your project. Conf
 
 ```javascript
 import log4js from 'log4js';
+
 const logger log4js.getLogger('wiremock-rest-client');
 
 logger.level = 'debug';

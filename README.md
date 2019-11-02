@@ -1,7 +1,17 @@
 # WireMock REST Client
+The WireMock REST client is a lightweight module to interact with a running [WireMock](http://wiremock.org) server based on the [OpenAPI 3.0 spec](http://wiremock.org/docs/api/) via REST.
 
-## Description
-WireMock REST client is a lightweight client to interact with a running [WireMock](http://wiremock.org) server based on the [OpenAPI 3.0 spec](http://wiremock.org/docs/api/).
+<!-- TOC -->
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
+    - [Global](#global)
+    - [Stub mappings](#stub-mappings)
+    - [Recordings](#recordings)
+    - [Requests](#requests)
+    - [Scenarios](#scenarios)
+- [Logging](#logging)
+<!-- /TOC -->
 
 ## Installation
 ```
@@ -16,10 +26,9 @@ The `WireMockRestClient` has 5 services which correspond with request paths as s
 - `requests` - Logged requests and responses received
 - `scenarios` - Scenarios support modeling of stateful behaviour
 
-Each service contain methods to perform operations on WireMock endpoints.
+See the [API](#api) for the available methods. All methods are related to available operations on the WireMock server endpoints.
 
-**Example:**
-```javascript
+```js
 import { WireMockRestClient } from 'wiremock-rest-client';
 
 const wireMock = new WireMockRestClient('http://localhost:8080');
@@ -27,6 +36,39 @@ const wireMock = new WireMockRestClient('http://localhost:8080');
 const stubMappings = await wireMock.mappings.getAllMappings();
 
 console.log(stubMappings);
+
+await wireMock.global.shutdown();
+```
+
+## API
+
+### Global
+- `updateGlobalSettings(delayDefinition: DelayDefinition): Promise<void>`
+- `resetAll(): Promise<void>`
+- `shutdown(): Promise<void>`
+
+Example:
+```js
+await wireMockRestClient.global.resetAll();
+```
+
+### Stub mappings
+- `getAllMappings(): Promise<StubMappings>`
+- `createMapping(stubMapping: StubMapping): Promise<StubMapping>`
+- `createMappingFromFile(fileName: string): Promise<StubMapping>`
+- `createMappingsFromDir(directoryName: string): Promise<any>`
+- `deleteAllMappings(): Promise<void>`
+- `resetAllMappings(): Promise<void>`
+- `getMapping(uuid: string): Promise<StubMapping>`
+- `updateMapping(uuid: string, stubMapping: StubMapping): Promise<StubMapping>`
+- `deleteMapping(uuid: string): Promise<void>`
+- `saveAllMappings(): Promise<void>`
+- `findByMetaData(contentPattern: ContentPattern): Promise<StubMappings>`
+- `removeByMetaData(contentPattern: ContentPattern): Promise<void>`
+
+**Example:**
+```js
+await wireMockRestClient.mappings.resetAllMappings();
 
 const stubMapping = {
     "request": {
@@ -44,39 +86,70 @@ const stubMapping = {
 
 const response = await wireMock.mappings.createMapping(stubMapping);
 
-console.log(response);
-
 // Create mapping from current working directory
 await wireMock.mappings.createMappingFromFile('stubs/hello-world.json');
 
 // Create mappings from a directory recursively (based on current working directory)
 await wireMock.mappings.createMappingsFromDir('stubs');
+```
 
-await wireMock.mappings.resetAllMappings();
+### Recordings
+- `startRecording(recordSpec: RecordSpec): Promise<void>`
+- `stopRecording(): Promise<StubMappings>`
+- `getRecordingStatus(): Promise<any>`
+- `takeSnapshotRecording(snapshotSpec: RecordSpec): Promise<StubMappings>`
 
-const requests = await wireMock.requests.getAllRequests();
+**Example:**
+```js
+const recordingStatus = wireMockRestClient.recordings.getRecordingStatus();
+```
 
-console.log(requests);
+### Requests
+- `getAllRequests(): Promise<any>`
+- `deleteAllRequests(): Promise<void>`
+- `getRequest(uuid: string): Promise<any>`
+- `deleteRequest(uuid: string): Promise<void>`
+- `resetAllRequests(): Promise<void>`
+- `getCount(requestPattern: RequestPattern): Promise<any>`
+- `removeRequests(requestPattern: RequestPattern): Promise<any>`
+- `removeRequestsByMetadata(contentPattern: ContentPattern): Promise<any>`
+- `findRequests(requestPattern: RequestPattern): Promise<any>`
+- `getUnmatchedRequests(): Promise<any>`
+- `getUnmatchedNearMisses(): Promise<LoggedRequest[]>`
+- `getNearMissesByRequest(loggedRequest: LoggedRequest): Promise<any>`
+- `getNearMissesByRequestPattern(requestPattern: RequestPattern): Promise<any>`
 
-await wireMock.global.shutdown();
+**Example:**
+```js
+const requests = await wireMockRestClient.requests.getAllRequests();
+```
+
+### Scenarios
+- `getAllScenarios(): Promise<Scenario[]>`
+- `resetAllScenarios(): Promise<void>`
+
+**Example:**
+```js
+await wireMockRestClient.scenarios.resetAllScenarios();
 ```
 
 ## Logging
-- Logging is based on [log4js](https://www.npmjs.com/package/log4js)
+- Logging is based on `log4js`
 - Default log level is `info`
 - Each log line contains a unique id to trace logs for a single request
+- Log level `debug` will log the request body for each request.
 
-To configure a different log level, first install `log4js` in your project. Configuration can be set as follows.
+To enable logging, install [log4js](https://www.npmjs.com/package/log4js) in your project.
 
-```javascript
+A different log level can be configured as follows.
+
+```js
 import log4js from 'log4js';
 
 const logger log4js.getLogger('wiremock-rest-client');
 
 logger.level = 'debug';
 ```
-
-Debug level will log the request body for each request.
 
 **Example:**
 ```shell

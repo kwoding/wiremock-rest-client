@@ -24,7 +24,7 @@ The `WireMockRestClient` has 5 services which correspond with request paths as s
 - `mappings` - Operations on stub mappings
 - `recordings` - Stub mapping record and snapshot functions
 - `requests` - Logged requests and responses received
-- `scenarios` - Scenarios support modeling of stateful behaviour
+- `scenarios` - Scenarios support modeling of stateful behavior
 
 See the [API](#api) for the available methods. All methods are related to available operations on the WireMock server endpoints.
 
@@ -66,7 +66,7 @@ await wireMockRestClient.global.resetAll();
 - `findByMetaData(contentPattern: ContentPattern): Promise<StubMappings>`
 - `removeByMetaData(contentPattern: ContentPattern): Promise<void>`
 
-**Example:**
+Example:
 ```js
 await wireMockRestClient.mappings.resetAllMappings();
 
@@ -99,7 +99,7 @@ await wireMock.mappings.createMappingsFromDir('stubs');
 - `getRecordingStatus(): Promise<any>`
 - `takeSnapshotRecording(snapshotSpec: RecordSpec): Promise<StubMappings>`
 
-**Example:**
+Example:
 ```js
 const recordingStatus = wireMockRestClient.recordings.getRecordingStatus();
 ```
@@ -119,7 +119,7 @@ const recordingStatus = wireMockRestClient.recordings.getRecordingStatus();
 - `getNearMissesByRequest(loggedRequest: LoggedRequest): Promise<any>`
 - `getNearMissesByRequestPattern(requestPattern: RequestPattern): Promise<any>`
 
-**Example:**
+Example:
 ```js
 const requests = await wireMockRestClient.requests.getAllRequests();
 ```
@@ -128,7 +128,7 @@ const requests = await wireMockRestClient.requests.getAllRequests();
 - `getAllScenarios(): Promise<Scenario[]>`
 - `resetAllScenarios(): Promise<void>`
 
-**Example:**
+Example:
 ```js
 await wireMockRestClient.scenarios.resetAllScenarios();
 ```

@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "lint": "tslint",
+    "lint": "eslint src/**/*.ts",
     "prepare": "npm run build",
     "preversion": "npm run lint",
     "version": "git add -A src",

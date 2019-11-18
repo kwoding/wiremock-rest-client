@@ -16,15 +16,14 @@ export class FileUtil {
         }
     }
 
-    static getFilesFromDir(directoryName: string): string[] {
-        const files: string[] = [];
+    static getFilesFromDir(directoryName: string, files: string[] = []): string[] {
         const fullDirectoryPath = path.join(process.cwd(), directoryName);
 
         try {
             fs.readdirSync(fullDirectoryPath).forEach((fileName) => {
                 const fullPath = path.join(fullDirectoryPath, fileName);
                 if (fs.lstatSync(fullPath).isDirectory()) {
-                    this.getFilesFromDir(fullPath);
+                    this.getFilesFromDir(path.join(directoryName, fileName), files);
                 } else {
                     files.push(path.join(directoryName, fileName));
                 }

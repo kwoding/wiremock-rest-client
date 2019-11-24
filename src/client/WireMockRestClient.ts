@@ -1,3 +1,4 @@
+import log, { LogLevelDesc } from 'loglevel';
 import { resolve } from 'url';
 import { MappingService } from '../service/MappingService';
 import { GlobalService } from '../service/GlobalService';
@@ -9,6 +10,9 @@ export class WireMockRestClient {
     baseUri: string;
 
     constructor(baseUri: string) {
+        log.getLogger('wiremock-rest-client')
+            .setLevel(<LogLevelDesc>process.env.WRC_LOG_LEVEL || log.levels.INFO);
+
         this.baseUri = resolve(baseUri, '__admin/');
     }
 

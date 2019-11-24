@@ -1,17 +1,15 @@
-import log4js from '@log4js-node/log4js-api';
+import log from 'loglevel';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const logger = log4js.getLogger('wiremock-rest-client');
-
-logger.level = 'info';
+const logger = log.getLogger('wiremock-rest-client');
 
 export class FileUtil {
     static getFileContent(fileName: string): string {
         try {
             return fs.readFileSync(path.join(process.cwd(), fileName), 'utf8');
         } catch (error) {
-            logger.error(`Error: ${error}`);
+            logger.error(`[ERROR] ${error}`);
             return process.exit(1);
         }
     }
@@ -29,7 +27,7 @@ export class FileUtil {
                 }
             });
         } catch (error) {
-            logger.error(`Error: ${error}`);
+            logger.error(`[ERROR] ${error}`);
             return process.exit(1);
         }
 

@@ -9,7 +9,7 @@ export class FileUtil {
         try {
             return fs.readFileSync(path.join(process.cwd(), fileName), 'utf8');
         } catch (error) {
-            logger.error(`[ERROR] ${error}`);
+            logger.error(`Error: ${error}`);
             return process.exit(1);
         }
     }
@@ -27,7 +27,7 @@ export class FileUtil {
                 }
             });
         } catch (error) {
-            logger.error(`[ERROR] ${error}`);
+            logger.error(`Error: ${error}`);
             return process.exit(1);
         }
 

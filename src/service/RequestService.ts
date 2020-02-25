@@ -47,7 +47,7 @@ export class RequestService {
      * Empty the request journal
      */
     async resetAllRequests(): Promise<void> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'reset'), { method: 'POST' });
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'reset'), { method: 'POST' });
     }
 
     /**
@@ -55,7 +55,7 @@ export class RequestService {
      * @param id The UUID of the logged request
      */
     async getCount(requestPattern: RequestPattern): Promise<any> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'count'), {
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'count'), {
             method: 'POST',
             body: JSON.stringify(requestPattern)
         });
@@ -66,7 +66,7 @@ export class RequestService {
      * @param requestPattern Request pattern as filter criteria
      */
     async removeRequests(requestPattern: RequestPattern): Promise<any> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'remove'), {
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'remove'), {
             method: 'POST',
             body: JSON.stringify(requestPattern)
         });
@@ -77,7 +77,7 @@ export class RequestService {
      * @param contentPattern Content pattern (metadata) as filter criteria
      */
     async removeRequestsByMetadata(contentPattern: ContentPattern): Promise<any> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'remove-by-metadata'), {
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'remove-by-metadata'), {
             method: 'POST',
             body: JSON.stringify(contentPattern)
         });
@@ -88,7 +88,7 @@ export class RequestService {
      * @param requestPattern Request pattern as filter criteria
      */
     async findRequests(requestPattern: RequestPattern): Promise<any> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'find'), {
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'find'), {
             method: 'POST',
             body: JSON.stringify(requestPattern)
         });
@@ -98,14 +98,14 @@ export class RequestService {
      * Get details of logged requests that were not matched by any stub mapping
      */
     async getUnmatchedRequests(): Promise<any> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'unmatched'), { method: 'GET' });
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'unmatched'), { method: 'GET' });
     }
 
     /**
      * Retrieve near-misses for all unmatched requests
      */
     async getUnmatchedNearMisses(): Promise<LoggedRequest[]> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'unmatched/near-misses'), { method: 'GET' });
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'unmatched/near-misses'), { method: 'GET' });
     }
 
     /**
@@ -113,7 +113,7 @@ export class RequestService {
      * @param loggedRequest Logged request as filter criteria
      */
     async getNearMissesByRequest(loggedRequest: LoggedRequest): Promise<any> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'near-misses/request'), {
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'near-misses/request'), {
             method: 'POST',
             body: JSON.stringify(loggedRequest)
         });
@@ -124,7 +124,7 @@ export class RequestService {
      * @param requestPattern Request pattern as filter criteria
      */
     async getNearMissesByRequestPattern(requestPattern: RequestPattern): Promise<any> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'near-misses/request-pattern'), {
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'near-misses/request-pattern'), {
             method: 'POST',
             body: JSON.stringify(requestPattern)
         });

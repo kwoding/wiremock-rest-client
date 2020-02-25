@@ -14,7 +14,7 @@ export class GlobalService {
      * @param delayDistribution Delay definition
      */
     async updateGlobalSettings(delayDefinition: DelayDefinition): Promise<void> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'settings'), {
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'settings'), {
             method: 'POST',
             body: JSON.stringify(delayDefinition)
         });
@@ -24,13 +24,13 @@ export class GlobalService {
      * Reset mappings to the default set and reset the request journal
      */
     async resetAll(): Promise<void> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'reset'), { method: 'POST' });
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'reset'), { method: 'POST' });
     }
 
     /**
     * Shut down the WireMock server
     */
     async shutdown(): Promise<void> {
-        return HttpUtil.fetch(resolve(this.baseUri, 'shutdown'), { method: 'POST' });
+        return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'shutdown'), { method: 'POST' });
     }
 }

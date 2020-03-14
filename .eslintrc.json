@@ -42,6 +42,16 @@
         }
     },
     "rules": {
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+              "js": "never",
+              "jsx": "never",
+              "ts": "never",
+              "tsx": "never"
+            }
+         ],
         "import/prefer-default-export": "off",
         "import/no-default-export": "error",
         "indent": [

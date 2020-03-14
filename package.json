@@ -34,20 +34,20 @@
   ],
   "dependencies": {
     "https-proxy-agent": "^4.0.0",
-    "loglevel": "^1.6.6",
+    "loglevel": "^1.6.7",
     "node-fetch": "^2.6.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@types/node": "^12.11.7",
-    "@types/node-fetch": "^2.5.2",
-    "@typescript-eslint/eslint-plugin": "^2.5.0",
-    "@typescript-eslint/parser": "^2.5.0",
-    "dtsgenerator": "^2.3.1",
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb-base": "^14.0.0",
+    "@types/node": "^12.12.30",
+    "@types/node-fetch": "^2.5.5",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "dtsgenerator": "^2.5.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
     "eslint-import-resolver-typescript": "^2.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "typescript": "^3.6.4"
+    "eslint-plugin-import": "^2.20.1",
+    "typescript": "^3.8.3"
   }
 }

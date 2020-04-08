@@ -10,7 +10,7 @@ export class FileUtil {
             return fs.readFileSync(path.join(process.cwd(), fileName), 'utf8');
         } catch (error) {
             logger.error(`Error: ${error}`);
-            return process.exit(1);
+            throw new Error(error);
         }
     }
 
@@ -28,7 +28,7 @@ export class FileUtil {
             });
         } catch (error) {
             logger.error(`Error: ${error}`);
-            return process.exit(1);
+            throw new Error(error);
         }
 
         return files;

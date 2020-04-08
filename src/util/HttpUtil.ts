@@ -27,8 +27,7 @@ export class HttpUtil {
             return this.parseResponse(id, response);
         } catch (error) {
             logger.error(`[${id}] Error: ${error.message}`);
-
-            return process.exit(1);
+            throw new Error(error);
         }
     }
 
@@ -37,8 +36,7 @@ export class HttpUtil {
 
         if (!response.ok) {
             logger.error(`[${id}] ${responseLog}`);
-
-            return process.exit(1);
+            throw new Error(responseLog);
         }
 
         logger.info(`[${id}] ${responseLog}`);

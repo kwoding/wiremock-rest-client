@@ -5,12 +5,13 @@ import { GlobalService } from '../service/GlobalService';
 import { ScenarioService } from '../service/ScenarioService';
 import { RequestService } from '../service/RequestService';
 import { RecordingService } from '../service/RecordingService';
+import { LogUtil } from '../util/LogUtil';
 
 export class WireMockRestClient {
     baseUri: string;
 
     constructor(baseUri: string) {
-        log.getLogger('wiremock-rest-client')
+        LogUtil.logger()
             .setLevel(<LogLevelDesc>process.env.WRC_LOG_LEVEL || log.levels.INFO);
 
         this.baseUri = resolve(baseUri, '__admin/');

@@ -1,9 +1,8 @@
-import log from 'loglevel';
 import fetch from 'node-fetch';
 import uuid from 'uuid/v4';
 import HttpsProxyAgent from 'https-proxy-agent';
+import { LogUtil } from './LogUtil';
 
-const logger = log.getLogger('wiremock-rest-client');
 const proxy = process.env.WRC_HTTP_PROXY;
 
 export class HttpUtil {
@@ -13,22 +12,22 @@ export class HttpUtil {
 
         if (proxy) {
             allOptions.agent = new HttpsProxyAgent(proxy);
-            logger.debug(`[${id}] Using proxy: ${proxy}`);
+            LogUtil.logger().debug(`[${id}] Using proxy: ${proxy}`);
         }
 
         try {
-            logger.info(`[${id}] Request: [${allOptions.method}] ${uri}`);
+            LogUtil.logger().info(`[${id}] Request: [${allOptions.method}] ${uri}`);
+
             if (allOptions.body !== undefined) {
-                logger.debug(`[${id}] Request body: ${allOptions.body}`);
+                LogUtil.logger().debug(`[${id}] Request body: ${allOptions.body}`);
             }
 
             const response = await fetch(uri, allOptions);
 
             return this.parseResponse(id, response);
         } catch (error) {
-            logger.error(`[${id}] Error: ${error.message}`);
-
-            return process.exit(1);
+            LogUtil.handleError(`[${id}] Error: ${error.message}`);
+            return '';
         }
     }
 
@@ -36,12 +35,10 @@ export class HttpUtil {
         const responseLog: string = `Response: [${response.status}] ${response.statusText}`;
 
         if (!response.ok) {
-            logger.error(`[${id}] ${responseLog}`);
-
-            return process.exit(1);
+            LogUtil.handleError(`[${id}] ${responseLog}`);
         }
 
-        logger.info(`[${id}] ${responseLog}`);
+        LogUtil.logger().info(`[${id}] ${responseLog}`);
         const responseText = await response.text();
 
         try {

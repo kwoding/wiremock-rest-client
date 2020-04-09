@@ -10,7 +10,10 @@ The WireMock REST client is a lightweight module to interact with a running [Wir
     - [Recordings](#recordings)
     - [Requests](#requests)
     - [Scenarios](#scenarios)
-- [Logging](#logging)
+- [Configuration](##configuration)
+    - [Proxy](#proxy)
+    - [Log level](#log-level)
+    - [Continue on failure](#continue-on-failure)
 <!-- /TOC -->
 
 ## Installation
@@ -133,7 +136,16 @@ Example:
 await wireMockRestClient.scenarios.resetAllScenarios();
 ```
 
-## Proxy
+## Configuration
+The following configuration options are available via environment variables.
+
+| Configuration option                         | Default  | Environment variable      |
+|----------------------------------------------|----------|---------------------------|
+| [Proxy](#proxy)                              | No proxy | `WRC_HTTP_PROXY`          |
+| [Log level](#log-level)                      | `info`   | `WRC_LOG_LEVEL`           |
+| [Continue on failure](#continue-on-failure)  | `false`  | `WRC_CONTINUE_ON_FAILURE` |
+
+### Proxy
 A proxy can be set to connect through as follows.
 
 Set the environment variable `WRC_HTTP_PROXY` to the proxy url. The proxy URL can be HTTP or HTTPS. Credentials for authentication can be passed in the URL.
@@ -143,17 +155,12 @@ Example:
 WRC_HTTP_PROXY=http://username:secret@mycorporateproxy.com
 ```
 
-## Logging
+### Log level
 - Default log level is `info`
 - Each log line contains a unique id to trace logs for a single request
 - Log level `debug` will log the request body for each request.
 
 A different log level can be configured by setting the environment variable `WRC_LOG_LEVEL` to specific a log level (`trace`/`debug`/`info`/`warn`/`error`/`silent`)
-
-Example:
-```
-WRC_LOG_LEVEL=debug
-```
 
 ```shell
 2019-12-11T20:43:18.157Z INFO wiremock-rest-client: [10f7dcb9-b8a3-4598-8751-40edb0bd5d2e] Request: [POST] http://localhost:8080/__admin/mappings
@@ -162,3 +169,7 @@ WRC_LOG_LEVEL=debug
 2019-12-11T20:43:18.158Z INFO wiremock-rest-client: [c3690603-c055-4412-a5b0-497704c09dd0] Request: [POST] http://localhost:8080/__admin/shutdown
 2019-12-11T20:43:18.161Z INFO wiremock-rest-client: [c3690603-c055-4412-a5b0-497704c09dd0] Response: [200] OK
 ```
+
+### Continue on failure
+- By default the node process is exited in case of a failure
+- To change this behavior to continue on failure, set the environment variable `WRC_CONTINUE_ON_FAILURE` to `true`

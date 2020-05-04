@@ -1,7 +1,7 @@
 import { resolve } from 'url';
-import { HttpUtil } from '../util/HttpUtil';
-import { RecordSpec } from '../model/RecordSpec';
-import { StubMappings } from '../model/StubMappings';
+import { HttpUtil } from '../util/http.util';
+import { RecordSpec } from '../model/record-spec.model';
+import { StubMappings } from '../model/stub-mappings.model';
 
 export class RecordingService {
     baseUri: string;

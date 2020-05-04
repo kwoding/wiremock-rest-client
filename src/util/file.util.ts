@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { LogUtil } from './LogUtil';
+import { LogUtil } from './log.util';
 
 export class FileUtil {
     static getFileContent(fileName: string): string {

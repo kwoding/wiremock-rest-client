@@ -1,1 +1,1 @@
-export * from './WireMockRestClient';
+export * from './wiremock-rest.client';

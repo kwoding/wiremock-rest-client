@@ -1,7 +1,7 @@
 /**
  * This file was automatically generated. DO NOT MODIFY IT BY HAND.
  */
-import { StubMapping } from './StubMapping';
+import { StubMapping } from './stub-mapping.model';
 
 export interface StubMappings {
   mappings?: StubMapping[];

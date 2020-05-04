@@ -1,6 +1,6 @@
 import { resolve } from 'url';
-import { HttpUtil } from '../util/HttpUtil';
-import { Scenario } from '../model/Scenario';
+import { HttpUtil } from '../util/http.util';
+import { Scenario } from '../model/scenario.model';
 
 export class ScenarioService {
     baseUri: string;

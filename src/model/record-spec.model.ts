@@ -2,7 +2,7 @@
  * This file was automatically generated. DO NOT MODIFY IT BY HAND.
  */
 
-import { RequestPattern } from './RequestPattern';
+import { RequestPattern } from './request-pattern.model';
 
 export interface RecordSpec {
   /**

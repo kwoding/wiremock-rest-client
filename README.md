@@ -14,7 +14,7 @@ The WireMock REST client is a lightweight module to interact with a running [Wir
     - [Proxy](#proxy)
     - [Log level](#log-level)
     - [Continue on failure](#continue-on-failure)
-- [CLI](##cli)
+- [CLI](#cli)
 <!-- /TOC -->
 
 ## Installation
@@ -138,18 +138,27 @@ await wireMockRestClient.scenarios.resetAllScenarios();
 ```
 
 ## Configuration
-The following configuration options are available via environment variables.
+The following **optional** configuration options are available, to be set via options or environment variables.
 
-| Configuration option                         | Default  | Environment variable      |
-|----------------------------------------------|----------|---------------------------|
-| [Proxy](#proxy)                              | No proxy | `WRC_HTTP_PROXY`          |
-| [Log level](#log-level)                      | `info`   | `WRC_LOG_LEVEL`           |
-| [Continue on failure](#continue-on-failure)  | `false`  | `WRC_CONTINUE_ON_FAILURE` |
+| Configuration option                         | Default  | Options property    | Environment variable      |
+|----------------------------------------------|----------|---------------------|---------------------------|
+| [Proxy](#proxy)                              | No proxy | `proxy`             | `WRC_HTTP_PROXY`          |
+| [Log level](#log-level)                      | `info`   | `logLevel`          | `WRC_LOG_LEVEL`           |
+| [Continue on failure](#continue-on-failure)  | `false`  | `continueOnFailure` | `WRC_CONTINUE_ON_FAILURE` |
+
+Example using options:
+```js
+const wireMock = new WireMockRestClient('http://localhost:8080', {
+    proxy: 'http://mycorporateproxy.com',
+    logLevel: 'debug',
+    continueOnFailure: true
+});
+```
+
+Note: Environment variables have the highest priority
 
 ### Proxy
-A proxy can be set to connect through as follows.
-
-Set the environment variable `WRC_HTTP_PROXY` to the proxy url. The proxy URL can be HTTP or HTTPS. Credentials for authentication can be passed in the URL.
+The proxy URL can be HTTP or HTTPS. Credentials for authentication can be passed in the URL.
 
 Example:
 ```
@@ -164,16 +173,16 @@ WRC_HTTP_PROXY=http://username:secret@mycorporateproxy.com
 A different log level can be configured by setting the environment variable `WRC_LOG_LEVEL` to specific a log level (`trace`/`debug`/`info`/`warn`/`error`/`silent`)
 
 ```shell
-2019-12-11T20:43:18.157Z INFO wiremock-rest-client: [10f7dcb9-b8a3-4598-8751-40edb0bd5d2e] Request: [POST] http://localhost:8080/__admin/mappings
-2019-12-11T20:43:18.157Z DEBUG wiremock-rest-client: [10f7dcb9-b8a3-4598-8751-40edb0bd5d2e] Request body:  {"request":{"method":"GET","urlPathPattern":"/api/helloworld"},"response":{"status":200,"jsonBody":{"hello":"world"},"headers":{"Content-Type":"application/json"}}}
-2019-12-11T20:43:18.158Z INFO wiremock-rest-client: [10f7dcb9-b8a3-4598-8751-40edb0bd5d2e] Response: [201] Created
-2019-12-11T20:43:18.158Z INFO wiremock-rest-client: [c3690603-c055-4412-a5b0-497704c09dd0] Request: [POST] http://localhost:8080/__admin/shutdown
-2019-12-11T20:43:18.161Z INFO wiremock-rest-client: [c3690603-c055-4412-a5b0-497704c09dd0] Response: [200] OK
+2019-12-11T20:43:18.157Z INFO wiremock-rest-client: [Uub8jVUBq91F3MIyKXrON] Request: [POST] http://localhost:8080/__admin/mappings
+2019-12-11T20:43:18.157Z DEBUG wiremock-rest-client: [Uub8jVUBq91F3MIyKXrON] Request body:  {"request":{"method":"GET","urlPathPattern":"/api/helloworld"},"response":{"status":200,"jsonBody":{"hello":"world"},"headers":{"Content-Type":"application/json"}}}
+2019-12-11T20:43:18.158Z INFO wiremock-rest-client: [Uub8jVUBq91F3MIyKXrON] Response: [201] Created
+2019-12-11T20:43:18.158Z INFO wiremock-rest-client: [EDYjmman5BLb7tgws-VGg] Request: [POST] http://localhost:8080/__admin/shutdown
+2019-12-11T20:43:18.161Z INFO wiremock-rest-client: [EDYjmman5BLb7tgws-VGg] Response: [200] OK
 ```
 
 ### Continue on failure
 - By default the node process is exited in case of a failure
-- To change this behavior to continue on failure, set the environment variable `WRC_CONTINUE_ON_FAILURE` to `true`
+- To change this behavior to continue on failure, set the value to `true`
 
 ## CLI
 A small CLI is available to load data from the command line by passing the folder which contains the stub mappings to be loaded. By default it will reset all stub mappings first (configurable).

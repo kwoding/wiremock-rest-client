@@ -1,9 +1,10 @@
 import log from 'loglevel';
 
 const logger = log.getLogger('wiremock-rest-client');
-const continueOnFailure = process.env.WRC_CONTINUE_ON_FAILURE === 'true';
 
 export class LogUtil {
+    static continueOnFailure: boolean;
+
     static logger() {
         return logger;
     }
@@ -11,7 +12,7 @@ export class LogUtil {
     static handleError(errorMessage: string) {
         logger.error(errorMessage);
 
-        if (!continueOnFailure) {
+        if (!LogUtil.continueOnFailure) {
             process.exit(1);
         }
     }

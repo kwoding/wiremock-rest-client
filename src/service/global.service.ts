@@ -1,6 +1,6 @@
 import { resolve } from 'url';
-import { HttpUtil } from '../util/HttpUtil';
-import { DelayDefinition } from '../model/DelayDefinition';
+import { HttpUtil } from '../util/http.util';
+import { DelayDefinition } from '../model/delay-definition.model';
 
 export class GlobalService {
     baseUri: string;

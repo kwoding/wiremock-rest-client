@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import uuid from 'uuid/v4';
+import { nanoid } from 'nanoid';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { LogUtil } from './LogUtil';
 
@@ -7,7 +7,7 @@ const proxy = process.env.WRC_HTTP_PROXY;
 
 export class HttpUtil {
     static async fetch(uri: string, options: any): Promise<any> {
-        const id: string = uuid();
+        const id: string = nanoid();
         const allOptions: any = { 'Content-Type': 'application/json', ...options };
 
         if (proxy) {

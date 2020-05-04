@@ -7,6 +7,9 @@
   "files": [
     "dist/**/*"
   ],
+  "bin": {
+    "wrc": "bin/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
@@ -24,9 +27,6 @@
   "bugs": {
     "url": "https://github.com/kwoding/wiremock-rest-client/issues"
   },
-  "bin": {
-      "wrc": "bin/index.js"
-  },
   "homepage": "https://github.com/kwoding/wiremock-rest-client#readme",
   "keywords": [
     "wiremock",
@@ -38,20 +38,19 @@
   "dependencies": {
     "commander": "^5.1.0",
     "https-proxy-agent": "^4.0.0",
-    "loglevel": "^1.6.7",
-    "node-fetch": "^2.6.0",
-    "uuid": "^3.4.0"
+    "loglevel": "^1.6.8",
+    "nanoid": "^3.1.4",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@types/node": "^12.12.30",
-    "@types/node-fetch": "^2.5.5",
-    "@typescript-eslint/eslint-plugin": "^2.23.0",
-    "@typescript-eslint/parser": "^2.23.0",
-    "dtsgenerator": "^2.5.0",
+    "@types/node": "^13.13.4",
+    "@types/node-fetch": "^2.5.7",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-import-resolver-typescript": "^2.0.0",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-import": "^2.20.2",
     "typescript": "^3.8.3"
   }
 }

@@ -1,18 +1,18 @@
 import fetch from 'node-fetch';
 import { nanoid } from 'nanoid';
 import HttpsProxyAgent from 'https-proxy-agent';
-import { LogUtil } from './LogUtil';
-
-const proxy = process.env.WRC_HTTP_PROXY;
+import { LogUtil } from './log.util';
 
 export class HttpUtil {
+    static proxy;
+
     static async fetch(uri: string, options: any): Promise<any> {
         const id: string = nanoid();
         const allOptions: any = { 'Content-Type': 'application/json', ...options };
 
-        if (proxy) {
-            allOptions.agent = new HttpsProxyAgent(proxy);
-            LogUtil.logger().debug(`[${id}] Using proxy: ${proxy}`);
+        if (HttpUtil.proxy) {
+            allOptions.agent = new HttpsProxyAgent(HttpUtil.proxy);
+            LogUtil.logger().debug(`[${id}] Using proxy: ${HttpUtil.proxy}`);
         }
 
         try {

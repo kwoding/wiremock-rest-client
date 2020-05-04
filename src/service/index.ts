@@ -1,1 +1,1 @@
-export * from './MappingService';
+export * from './mapping.service';

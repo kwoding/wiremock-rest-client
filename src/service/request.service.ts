@@ -1,13 +1,11 @@
 import { resolve } from 'url';
-import { ContentPattern } from '../model/ContentPattern';
-import { HttpUtil } from '../util/HttpUtil';
-import { RequestPattern } from '../model/RequestPattern';
-import { LoggedRequest } from '../model/LoggedRequest';
+import { ContentPattern } from '../model/content-pattern.model';
+import { HttpUtil } from '../util/http.util';
+import { RequestPattern } from '../model/request-pattern.model';
+import { LoggedRequest } from '../model/logged-request.model';
 
 export class RequestService {
     baseUri: string;
-
-    defaultHeaders: any = { 'Content-Type': 'application/json' };
 
     constructor(baseUri: string) {
         this.baseUri = resolve(baseUri, 'requests');

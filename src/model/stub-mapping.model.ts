@@ -2,8 +2,8 @@
  * This file was automatically generated. DO NOT MODIFY IT BY HAND.
  */
 
-import { RequestPattern } from './RequestPattern';
-import { ResponseDefinition } from './ResponseDefinition';
+import { RequestPattern } from './request-pattern.model';
+import { ResponseDefinition } from './response-definition.model';
 
 export interface StubMapping {
   /**

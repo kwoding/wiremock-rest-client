@@ -1,14 +1,12 @@
 import { resolve } from 'url';
-import { ContentPattern } from '../model/ContentPattern';
-import { HttpUtil } from '../util/HttpUtil';
-import { StubMapping } from '../model/StubMapping';
-import { StubMappings } from '../model/StubMappings';
-import { FileUtil } from '../util/FileUtil';
+import { ContentPattern } from '../model/content-pattern.model';
+import { HttpUtil } from '../util/http.util';
+import { StubMapping } from '../model/stub-mapping.model';
+import { StubMappings } from '../model/stub-mappings.model';
+import { FileUtil } from '../util/file.util';
 
 export class MappingService {
     baseUri: string;
-
-    defaultHeaders: any = { 'Content-Type': 'application/json' };
 
     constructor(baseUri: string) {
         this.baseUri = resolve(baseUri, 'mappings');

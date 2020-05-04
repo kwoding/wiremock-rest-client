@@ -2,7 +2,7 @@
  * This file was automatically generated. DO NOT MODIFY IT BY HAND.
  */
 
-import { LogNormal, Uniform } from './DelayDistribution';
+import { LogNormal, Uniform } from './delay-distribution.model';
 
 export type ResponseDefinition = (LogNormal | Uniform) & {
   /**

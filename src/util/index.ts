@@ -1,2 +1,2 @@
-export * from './FileUtil';
-export * from './HttpUtil';
+export * from './file.util';
+export * from './http.util';

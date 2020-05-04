@@ -1,4 +1,4 @@
-import { DelayDistribution } from './DelayDistribution';
+import { DelayDistribution } from './delay-distribution.model';
 
 /**
  * This file was automatically generated. DO NOT MODIFY IT BY HAND.

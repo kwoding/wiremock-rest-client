@@ -10,10 +10,11 @@ The WireMock REST client is a lightweight module to interact with a running [Wir
     - [Recordings](#recordings)
     - [Requests](#requests)
     - [Scenarios](#scenarios)
-- [Configuration](##configuration)
+- [Configuration](#configuration)
     - [Proxy](#proxy)
     - [Log level](#log-level)
     - [Continue on failure](#continue-on-failure)
+- [CLI](##cli)
 <!-- /TOC -->
 
 ## Installation
@@ -173,3 +174,18 @@ A different log level can be configured by setting the environment variable `WRC
 ### Continue on failure
 - By default the node process is exited in case of a failure
 - To change this behavior to continue on failure, set the environment variable `WRC_CONTINUE_ON_FAILURE` to `true`
+
+## CLI
+A small CLI is available to load data from the command line by passing the folder which contains the stub mappings to be loaded. By default it will reset all stub mappings first (configurable).
+
+```
+$ wrc load --help
+
+Usage: wrc load [options]
+
+Options:
+  -f, --folder <folder>  Folder containing stub mappings to be loaded
+  --no-reset             Skip resetting all stub mappings
+  -u, --uri [uri]        WireMock base URI (default: "http://localhost:8080")
+  -h, --help             display help for command
+```

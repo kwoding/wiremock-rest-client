@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const { program } = require('commander');
 const { version } = require('../package.json');
-const { WireMockRestClient } = require('../dist/client/WireMockRestClient');
+const { WireMockRestClient } = require('../dist/client/wiremock-rest.client');
 
 program
     .version(version)

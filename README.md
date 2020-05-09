@@ -193,8 +193,8 @@ $ wrc load --help
 Usage: wrc load [options]
 
 Options:
-  -f, --folder <folder>  Folder containing stub mappings to be loaded
-  --no-reset             Skip resetting all stub mappings
-  -u, --uri [uri]        WireMock base URI (default: "http://localhost:8080")
-  -h, --help             display help for command
+  -f, --folders <folders>  Comma separated list of folders containing stub mappings to be loaded
+  --no-reset               Skip resetting all stub mappings
+  -u, --uri [uri]          WireMock base URI (default: "http://localhost:8080")
+  -h, --help               display help for command
 ```

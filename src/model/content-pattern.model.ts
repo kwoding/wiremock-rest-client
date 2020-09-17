@@ -2,16 +2,6 @@
  * This file was automatically generated. DO NOT MODIFY IT BY HAND.
  */
 
-export type ContentPattern =
-  | StringEquals
-  | StringContains
-  | RegularExpressionMatch
-  | NegativeRegularExpressionMatch
-  | JSONEquals
-  | JSONPathMatch
-  | XMLEquality
-  | XPathMatch;
-
 export interface StringEquals {
   equalTo: boolean;
   caseInsensitive?: boolean;
@@ -53,3 +43,13 @@ export interface XPathMatch {
   };
   [k: string]: any;
 }
+
+export type ContentPattern =
+  | StringEquals
+  | StringContains
+  | RegularExpressionMatch
+  | NegativeRegularExpressionMatch
+  | JSONEquals
+  | JSONPathMatch
+  | XMLEquality
+  | XPathMatch;

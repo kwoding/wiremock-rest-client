@@ -2,8 +2,6 @@
  * This file was automatically generated. DO NOT MODIFY IT BY HAND.
  */
 
-export type DelayDistribution = LogNormal | Uniform;
-
 /**
  * Log normal randomly distributed response delay.
  */
@@ -22,3 +20,5 @@ export interface Uniform {
   upper?: number;
   [k: string]: any;
 }
+
+export type DelayDistribution = LogNormal | Uniform;

@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import fetch from 'cross-fetch';
 import { nanoid } from 'nanoid';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { LogUtil } from './log.util';

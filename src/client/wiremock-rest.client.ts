@@ -16,6 +16,7 @@ export class WireMockRestClient {
         this.baseUri = resolve(baseUri, '__admin/');
 
         HttpUtil.proxy = process.env.WRC_HTTP_PROXY || options.proxy;
+        HttpUtil.headers = process.env.WRC_HEADERS || options.headers || {};
         LogUtil.continueOnFailure = process.env.WRC_CONTINUE_ON_FAILURE === 'true' || options.continueOnFailure || false;
         LogUtil.logger().setLevel(
             <LogLevelDesc>process.env.WRC_LOG_LEVEL || options.logLevel || log.levels.INFO

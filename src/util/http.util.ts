@@ -10,7 +10,7 @@ export class HttpUtil {
 
     static async fetch(uri: string, options: any): Promise<any> {
         const id: string = nanoid();
-        const allOptions: any = { 'Content-Type': 'application/json', ...options, ...HttpUtil.headers };
+        const allOptions: any = { headers: { 'Content-Type': 'application/json', ...HttpUtil.headers }, ...options };
 
         if (HttpUtil.proxy) {
             allOptions.agent = new HttpsProxyAgent(HttpUtil.proxy);

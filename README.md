@@ -172,7 +172,7 @@ Additional headers can be added to all HTTP requests.
 
 Example:
 ```
-WRC_HEADERS={Authorization: 'some-token'}
+WRC_HEADERS="{Authorization: 'some-token'}"
 ```
 
 ### Log level

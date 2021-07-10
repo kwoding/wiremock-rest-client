@@ -140,16 +140,18 @@ await wireMockRestClient.scenarios.resetAllScenarios();
 ## Configuration
 The following **optional** configuration options are available, to be set via options or environment variables.
 
-| Configuration option                         | Default  | Options property    | Environment variable      |
-|----------------------------------------------|----------|---------------------|---------------------------|
-| [Proxy](#proxy)                              | No proxy | `proxy`             | `WRC_HTTP_PROXY`          |
-| [Log level](#log-level)                      | `info`   | `logLevel`          | `WRC_LOG_LEVEL`           |
-| [Continue on failure](#continue-on-failure)  | `false`  | `continueOnFailure` | `WRC_CONTINUE_ON_FAILURE` |
+| Configuration option                         | Default               | Options property    | Environment variable      |
+|----------------------------------------------|-----------------------|---------------------|---------------------------|
+| [Proxy](#proxy)                              | No proxy              | `proxy`             | `WRC_HTTP_PROXY`          |
+| [Headers](#headers)                          | No additional headers | `headers`           | `WRC_HEADERS`             |
+| [Log level](#log-level)                      | `info`                | `logLevel`          | `WRC_LOG_LEVEL`           |
+| [Continue on failure](#continue-on-failure)  | `false`               | `continueOnFailure` | `WRC_CONTINUE_ON_FAILURE` |
 
 Example using options:
 ```js
 const wireMock = new WireMockRestClient('http://localhost:8080', {
     proxy: 'http://mycorporateproxy.com',
+    headers: {Authorization: 'some-token'},
     logLevel: 'debug',
     continueOnFailure: true
 });
@@ -163,6 +165,14 @@ The proxy URL can be HTTP or HTTPS. Credentials for authentication can be passed
 Example:
 ```
 WRC_HTTP_PROXY=http://username:secret@mycorporateproxy.com
+```
+
+### Headers
+Additional headers can be added to all HTTP requests.
+
+Example:
+```
+WRC_HEADERS={Authorization: 'some-token'}
 ```
 
 ### Log level

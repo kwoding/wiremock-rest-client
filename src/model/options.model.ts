@@ -6,5 +6,7 @@ export interface Options {
 
   proxy?: string;
 
+  headers?: any;
+
   continueOnFailure?: boolean;
 }

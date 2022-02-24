@@ -35,6 +35,9 @@
     "automation",
     "test"
   ],
+  "engines": {
+    "node": "^12.22.0 || ^14.15.0 || >=16.0.0"
+  },
   "dependencies": {
     "commander": "^6.2.1",
     "cross-fetch": "^3.1.5",

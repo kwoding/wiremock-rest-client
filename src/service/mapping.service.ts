@@ -1,4 +1,5 @@
 import { resolve } from 'url';
+import { parse } from 'json5';
 import { ContentPattern } from '../model/content-pattern.model';
 import { HttpUtil } from '../util/http.util';
 import { StubMapping } from '../model/stub-mapping.model';
@@ -35,7 +36,7 @@ export class MappingService {
      * @param fileName File containing a stub mapping
      */
     async createMappingFromFile(fileName: string): Promise<StubMapping> {
-        const requestBody: any = JSON.parse(FileUtil.getFileContent(fileName));
+        const requestBody: any = parse(FileUtil.getFileContent(fileName));
 
         return this.createMapping(requestBody);
     }

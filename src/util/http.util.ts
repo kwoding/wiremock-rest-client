@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { parse } from 'json5';
 import { nanoid } from 'nanoid';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { LogUtil } from './log.util';
@@ -44,7 +45,7 @@ export class HttpUtil {
         const responseText = await response.text();
 
         try {
-            return JSON.parse(responseText);
+            return parse(responseText);
         } catch (error) {
             return responseText;
         }

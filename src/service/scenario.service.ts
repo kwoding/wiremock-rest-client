@@ -17,9 +17,28 @@ export class ScenarioService {
     }
 
     /**
-    * Reset the state of all scenarios
-    */
+     * Reset the state of all scenarios
+     */
     async resetAllScenarios(): Promise<void> {
         return HttpUtil.fetch(resolve(`${this.baseUri}/`, 'reset'), { method: 'POST' });
+    }
+
+    /**
+     * Reset the state of a single scenario
+     */
+    async resetScenario(scenarioId: string): Promise<void> {
+        return HttpUtil.fetch(resolve(`${this.baseUri}/${scenarioId}/`, 'state'), {
+            method: 'PUT'
+        });
+    }
+
+    /**
+     * Set the state of a single scenario
+     */
+    async setScenarioState(scenarioId: string, state: string): Promise<void> {
+        return HttpUtil.fetch(resolve(`${this.baseUri}/${scenarioId}/`, 'state'), {
+            method: 'PUT',
+            body: JSON.stringify({ state }),
+        });
     }
 }

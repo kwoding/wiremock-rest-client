@@ -2,19 +2,21 @@
 The WireMock REST client is a lightweight module to interact with a running [WireMock](http://wiremock.org) server based on the [OpenAPI 3.0 spec](http://wiremock.org/docs/api/) via REST.
 
 <!-- TOC -->
-- [Installation](#installation)
-- [Usage](#usage)
-- [API](#api)
+- [WireMock REST Client](#wiremock-rest-client)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [API](#api)
     - [Global](#global)
     - [Stub mappings](#stub-mappings)
     - [Recordings](#recordings)
     - [Requests](#requests)
     - [Scenarios](#scenarios)
-- [Configuration](#configuration)
+  - [Configuration](#configuration)
     - [Proxy](#proxy)
+    - [Headers](#headers)
     - [Log level](#log-level)
     - [Continue on failure](#continue-on-failure)
-- [CLI](#cli)
+  - [CLI](#cli)
 <!-- /TOC -->
 
 ## Installation
@@ -131,6 +133,8 @@ const requests = await wireMockRestClient.requests.getAllRequests();
 ### Scenarios
 - `getAllScenarios(): Promise<Scenario[]>`
 - `resetAllScenarios(): Promise<void>`
+- `resetScenario(scenarioId: string): Promise<void>`
+- `setScenarioState(scenarioId: string, state: string): Promise<void>`
 
 Example:
 ```js

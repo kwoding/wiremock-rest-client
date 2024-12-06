@@ -27,7 +27,9 @@ export class ScenarioService {
      * Reset the state of a single scenario
      */
     async resetScenario(scenarioId: string): Promise<void> {
-        return HttpUtil.fetch(resolve(`${this.baseUri}/${scenarioId}/`, 'state'), { method: 'PUT' });
+        return HttpUtil.fetch(resolve(`${this.baseUri}/${scenarioId}/`, 'state'), {
+            method: 'PUT'
+        });
     }
 
     /**
